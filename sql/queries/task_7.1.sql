@@ -1,14 +1,14 @@
 SELECT
-  CONCAT(customers.first_name, ' ', customers.last_name) AS full_name,
-  customers.country,
-  COUNT(orders.order_id) AS total_orders,
-  SUM(orders.amount) AS total_amount
-FROM customers
-JOIN orders ON customers.customer_id = orders.customer_id
-WHERE (
-  SELECT COUNT(status = 'Delivered')
-  FROM shippings
-  WHERE orders.customer_id = customers.customer_id
-) >= 1
-GROUP BY customers.customer_id
-HAVING COUNT(orders.customer_id) >= 2
+  CONCAT(c.first_name, ' ', c.last_name) AS full_name,
+  c.country,
+  COUNT(o.order_id) AS total_orders,
+  SUM(o.amount) AS total_amount
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+WHERE EXISTS  (
+  SELECT 1
+  FROM shippings s
+  WHERE s.customer = c.customer_id AND s.status = 'Delivered'
+)
+GROUP BY c.customer_id
+HAVING COUNT(o.order_id) >= 2
