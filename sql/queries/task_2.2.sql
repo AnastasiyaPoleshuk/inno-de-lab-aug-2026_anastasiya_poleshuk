@@ -1,6 +1,6 @@
 SELECT
-  shippings.status,
-  customers.first_name,
-  customers.last_name
-FROM shippings
-JOIN customers ON shippings.customer = customers.customer_id
+  s.status,
+  c.first_name,
+  c.last_name
+FROM shippings s
+JOIN customers c ON s.customer = c.customer_id
