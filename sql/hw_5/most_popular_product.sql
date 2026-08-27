@@ -2,8 +2,9 @@
 -- show the list of products by popularity in Jul 2026 
 
 SELECT
+  dp.product_id,
   dp.name,
-  SUM(fs.quantity) sum_quantity
+  SUM(fs.quantity) total_quantity
 FROM 
   fact_sales fs
 JOIN 
@@ -13,7 +14,6 @@ JOIN
 WHERE
   EXTRACT(MONTH FROM dd.full_date) = 7 
   AND EXTRACT(YEAR FROM dd.full_date) = 2026
-GROUP BY 
-  dp.name, dp.product_id
-ORDER BY 
-  sum_quantity DESC
+GROUP BY
+  dp.product_id, dp.name
+ORDER BY total_quantity DESC, dp.name;

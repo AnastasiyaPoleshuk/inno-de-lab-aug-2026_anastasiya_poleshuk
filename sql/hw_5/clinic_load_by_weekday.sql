@@ -2,16 +2,17 @@
 
 SELECT
   TO_CHAR(dd.full_date, 'Day') day_of_week,
-  COUNT(*) procedure_amount,
+  COUNT(*) AS visit_count,
   dd.is_weekend
 FROM 
-  fact_procedure fp
+  fact_visit fv
 JOIN 
-  dim_date dd ON dd.date_id = fp.date_id
+  dim_date dd ON dd.date_key = fv.date_key
 WHERE
-  EXTRACT(YEAR FROM dd.full_date) = 2026
+  dd.full_date >= DATE '2026-01-01'
+  AND dd.full_date < DATE '2027-01-01'
 GROUP BY 
-  day_of_week,
-  dd.is_weekend     
+  dd.day_of_week,
+  dd.is_weekend
 ORDER BY 
-  procedure_amount DESC
+  visit_count DESC, dd.day_of_week;
