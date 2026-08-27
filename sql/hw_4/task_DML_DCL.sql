@@ -5,7 +5,7 @@ UPDATE
 SET 
   Salary = Salary * 1.10
 WHERE 
-  Department = 'HR'
+  Department = 'HR';
 
 -- task 2. Update the department of employees with a salary greater than 70,000.00 to 'Senior IT'.
 
@@ -14,7 +14,7 @@ UPDATE
 SET 
   Department = 'Senior IT'
 WHERE 
-  Salary > 70000.00
+  Salary > 70000.00;
 
 -- task 3. Delete all employees who are not assigned to any project.
 
