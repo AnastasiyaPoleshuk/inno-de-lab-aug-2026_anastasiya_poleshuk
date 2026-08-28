@@ -23,7 +23,10 @@ if is_number(user_input_1) and is_number(user_input_2):
     elif operator == '*':
         print(f"{result} {num_1 * num_2}")
     elif operator == '/':
-        print(f"{result} {num_1 / num_2}")
+        try:
+            print(f"{result} {num_1 / num_2}")
+        except ZeroDivisionError:
+            print("На ноль делить нельзя")
     else:
         print(f"Вы ввели не корректрый оператор: {operator} не соответствует ни одному из доступных операторов(+, -, *, /)")
 else:
