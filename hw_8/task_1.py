@@ -8,7 +8,7 @@ test_values = [
 ]
 
 
-def calculate_rental_batch(quantity: int, rental_rate: float, discount = 0.0) -> tuple[float, bool]:
+def calculate_rental_batch(quantity: int, rental_rate: float, discount: float = 0.0) -> tuple[float, bool]:
   """Calculate rental batch total and check if it exceeds the limit
   
     Args:

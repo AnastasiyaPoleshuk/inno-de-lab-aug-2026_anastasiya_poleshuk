@@ -34,7 +34,7 @@ def performance_logger(func: Callable[..., Any]) -> Callable[..., Any]:
 
         execution_time = time.perf_counter() - start_time
 
-        print(f"{PERFORMANCE_LOG_PREFIX} Функция '{func.__name__}' выполнена за {execution_time:.6f} сек.")
+        print(f"{PERFORMANCE_LOG_PREFIX} Функция '{func.__name__}' выполнена за {execution_time:.{TIME_DECIMALS}f} сек.")
 
         return result
 
@@ -59,4 +59,4 @@ for item in test_data:
     print(f"--- ТЕСТ {item["id"]} ---")
     sorted_report = get_sorted_report(item["data"])
     for i in range(len(sorted_report)):
-      print(f"{i + 1}. {sorted_report[i]["category"]}: {sorted_report[i]["total_sales"]}")
+      print(f"{i + 1}. {sorted_report[i]['category']}: {sorted_report[i]['total_sales']}")
